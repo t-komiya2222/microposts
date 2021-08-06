@@ -3,6 +3,9 @@ class UsersController < ApplicationController
     @user = User.new #Userクラスのインスタンスを作成、インスタンス変数に入れてる
   end
   
+  def edit
+  end
+  
   def show
     @user = User.find(params[:id])
   end
@@ -14,6 +17,14 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       render 'new'
+    end
+  end
+  
+  def update
+    if current_user.update(user_params)
+      redirect_to user_path , notice:'基本情報を編集しました。'
+    else
+      render 'edit'
     end
   end
 
