@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.order(created_at: :desc)
+    end
   end
   
   def create
@@ -22,5 +24,3 @@ private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
-  
-end
