@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   
   def update
     if current_user.update(user_params)
-      redirect_to user_path , notice:'基本情報を編集しました。'
+      redirect_to user_path , notice: '基本情報を編集しました。'
     else
       render 'edit'
     end
