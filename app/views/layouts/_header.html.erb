@@ -21,7 +21,8 @@
               </li>
             </ul>
           </li>
-        <% else %>
+        <% end %>
+        <% unless logged_in? %>
           <li><%= link_to "Log in", login_path %></li>
         <% end %>
       </ul>
