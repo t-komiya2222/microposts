@@ -7,6 +7,8 @@
   <% if current_user == micropost.user %>
       <%= link_to "delete", micropost, method: :delete,
                                        data: { confirm: "You sure?" } %>
-    <% end %>
+  <% end %>
+  <%= link_to "retweet", %>
   </span>
 </li>
+<% binding.pry %>
