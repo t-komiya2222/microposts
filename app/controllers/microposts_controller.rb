@@ -7,13 +7,35 @@ class MicropostsController < ApplicationController
       flash[:success] = "Micropost created!"
       redirect_to root_url
     else
-      @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc) # この行を追加
+      @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc)
       render 'static_pages/home'
     end
   end
   
   def retweet
-    binding.pry
+    @micropost = current_user.feed_items.find_by(id: params[:id])
+    @micropost = current_user.microposts.new(
+      user_id: @micropost.user_id,
+      content: @micropost.content
+    )
+      @micropost.save
+      flash[:success] = "Retweet Succeeded!"
+      redirect_to root_url
+  end
+  
+  def favorite
+    @micropost = current_user.feed_items.find_by(id: params[:id])
+    if  @micropost
+      @favorite = Favorite.new(
+        user_id: @micropost.user_id,
+        content: @micropost.content
+      )
+      @favorite.save
+      flash[:success] = "Favorite!"
+      redirect_to root_url
+    else
+      @favorite = Favorite.all
+    end
   end
   
   def destroy
@@ -26,6 +48,6 @@ class MicropostsController < ApplicationController
   
   private
   def micropost_params
-    params.require(:micropost).permit(:content)
+    params.require(:micropost).permit(:content, :avatar)
   end
 end
