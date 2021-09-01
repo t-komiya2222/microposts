@@ -18,9 +18,9 @@ class MicropostsController < ApplicationController
       user_id: @micropost.user_id,
       content: @micropost.content
     )
-      @micropost.save
-      flash[:success] = "Retweet Succeeded!"
-      redirect_to root_url
+    @micropost.save
+    flash[:success] = "Retweet Succeeded!"
+    redirect_to root_url
   end
   
   def favorite
