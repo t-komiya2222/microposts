@@ -1,0 +1,14 @@
+<p>Favorite_list</p>
+<% if @favorite.any? %>
+  <ol class="favorites" style = "list-style-type:none;">
+    <% @favorite.each do |favorite_list| %>
+      <li>
+        ID:<%= favorite_list.user_id %><br>
+        ツイート内容:<%= favorite_list.content %><br>
+        作成日時:<%= favorite_list.created_at %><br>
+        更新日時:<%= favorite_list.updated_at %><br>
+      </li>
+      <br>
+    <% end %>
+  </ol>
+<% end %>

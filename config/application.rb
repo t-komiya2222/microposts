@@ -17,6 +17,12 @@ module Microposts
       g.javascripts false
       g.helper false
       g.test_framework false
+      
+    config.action_view.embed_authenticity_token_in_remote_forms = true
+    
+    #デフォルトのlocaleを日本語にする
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+    config.i18n.default_locale = :ja
     end
   end
 end
